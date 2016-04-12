@@ -5,10 +5,7 @@ var HelloWorldLayer = cc.Layer.extend({
     pelota:null,    
     puntuacion1:null,
     puntuacion2:null,
-    inicializar:function(){
-        var size = cc.winSize;
-        var color = cc.color(100,100,100);
-
+    inicializ
         this.jugador1 =  new cc.DrawNode();
         this.jugador1.drawRect(cc.p(0,0),cc.p(20,100),color,3);
         this.jugador1.setPosition(size.width * 0.1,size.height / 2);
