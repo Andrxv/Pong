@@ -11,7 +11,7 @@ var HelloWorldLayer = cc.Layer.extend({
     speed:0,
     
     //Pong Game
-    initializer:function(){
+    start:function(){
         
         var size = cc.winSize;
         var color = cc.color(100,100,100);
@@ -51,7 +51,7 @@ var HelloWorldLayer = cc.Layer.extend({
     },
     
     
-    moveControls: function(keyCode, event){
+    controls: function(keyCode, event){
         
          random: function getRandomInt(min, max) {
     	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -83,15 +83,6 @@ var HelloWorldLayer = cc.Layer.extend({
     },
     
     
-    reset:function(){
-        var size = cc.winSize;
-        this.speed = this.random(0.0001,0.001);
-        this.ball.setPosition(size.width / 2, this.random(0, size.height - 80));
-        this.move_x = this.random(1,3);
-        this.move_y = this.random(1,3);
-        this.po1.setString(this.sco1);
-        this.po2.setString(this.sco2);
-    },
     
     moveBall: function(){
         
@@ -101,24 +92,38 @@ var HelloWorldLayer = cc.Layer.extend({
             this.move_y *= -1;
             
         } else if(position.x <= 0 ){
+        	
             this.sco2++;
             this.reset();
+            
+            
         } else if(position.x >= cc.winSize.width){
+        	
             this.sco1++;
             this.reset();
+            
+            
         } else if (cc.rectIntersectsRect(this.ball.getBoundingBox(), this.player1.getBoundingBox())){
-            cc.log("collision");
             this.move_x *= -1;
         }
         
-        else if(cc.rectIntersectsRect(this.ball.getBoundingBox(), this.player2.getBoundingBox())){
-            cc.log("collision");
+        else if(cc.rectIntersectsRect(this.ball.getBoundingBox(), this.player2.getBoundingBox()))
             this.move_x *= -1;       
         }
         
         var newX = this.ball.getPosition().x + this.move_x;
         var newY = this.ball.getPosition().y + this.move_y;
         this.ball.setPosition(newX, newY);
+        
+         reset:function(){
+        var size = cc.winSize;
+        this.speed = this.random(0.0001,0.001);
+        this.ball.setPosition(size.width / 2, this.random(0, size.height - 80));
+        this.move_x = this.random(1,3);
+        this.move_y = this.random(1,3);
+        this.po1.setString(this.sco1);
+        this.po2.setString(this.sco2);
+    },
    
     
     ctor:function () {
