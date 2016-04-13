@@ -23,7 +23,7 @@ var HelloWorldLayer = cc.Layer.extend({
         
         this.po2 = new PointsLabel();
         this.po2.setPosition(size.width - (size.width * 0.4), size.height - (size.height * 0.10));
-        this.addChild(this.po2,0);
+        this.addChild(this.po2,0 );
         
         var middle =  new cc.DrawNode();
         middle.drawSegment(cc.p(size.width/2,0),cc.p(size.width/2,size.height),3,color);
